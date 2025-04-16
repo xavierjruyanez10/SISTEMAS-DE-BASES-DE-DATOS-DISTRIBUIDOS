@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "yRw1vTOT64iWVqbx/86bj0bheWurMNhOkKM9H2w8g0Y=",
+  "Source": "WebApiPerson",
+  "BasePath": "_content/WebApiPerson",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
