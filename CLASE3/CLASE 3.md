@@ -102,6 +102,101 @@
 
 ---
 
+### 🧩 Ejemplo: ¿Qué es la Fragmentación Horizontal?
+
+**Definición:**  
+Es una técnica de distribución de datos en la que una tabla se divide en subconjuntos de filas (tuplas), normalmente basándose en un criterio lógico, como el valor de una columna. Esto permite almacenar estos fragmentos en diferentes nodos o servidores, mejorando la eficiencia y localización de los datos.
+
+---
+
+**🧩 Caso: Fragmentación de una tabla "Estudiantes" por ciudad**
+
+```sql
+-- Tabla original
+CREATE TABLE Estudiantes (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    carrera VARCHAR(50),
+    ciudad VARCHAR(50)
+);
+```
+
+**Criterio de fragmentación:** ciudad del estudiante.
+
+---
+
+🔹 **Fragmento 1: Estudiantes en Quito**
+
+```sql
+CREATE TABLE Estudiantes_Quito (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    carrera VARCHAR(50),
+    ciudad VARCHAR(50)
+);
+
+INSERT INTO Estudiantes_Quito VALUES
+(1, 'Ana Pérez', 'Ingeniería', 'Quito'),
+(3, 'Carla Ruiz', 'Ingeniería', 'Quito');
+```
+
+---
+
+🔹 **Fragmento 2: Estudiantes en Ambato**
+
+```sql
+CREATE TABLE Estudiantes_Ambato (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    carrera VARCHAR(50),
+    ciudad VARCHAR(50)
+);
+
+INSERT INTO Estudiantes_Ambato VALUES
+(2, 'Luis Mora', 'Medicina', 'Ambato'),
+(5, 'Rosa Vega', 'Medicina', 'Ambato');
+```
+
+---
+
+🔹 **Fragmento 3: Estudiantes en Cuenca**
+
+```sql
+CREATE TABLE Estudiantes_Cuenca (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    carrera VARCHAR(50),
+    ciudad VARCHAR(50)
+);
+
+INSERT INTO Estudiantes_Cuenca VALUES
+(4, 'Mario León', 'Derecho', 'Cuenca'),
+(6, 'J. Ortega', 'Derecho', 'Cuenca');
+```
+
+---
+
+### 🧩 Vista global (reconstrucción de la tabla original)
+
+```sql
+CREATE VIEW Estudiantes_Todos AS
+SELECT * FROM Estudiantes_Quito
+UNION ALL
+SELECT * FROM Estudiantes_Ambato
+UNION ALL
+SELECT * FROM Estudiantes_Cuenca;
+```
+
+---
+
+### ✅ Ventajas de esta fragmentación
+
+- Mejora el rendimiento local de las consultas.
+- Permite mantener la información más cerca del usuario o de los sistemas que la necesitan.
+- Facilita la escalabilidad horizontal.
+
+---
+
 ### Fragmentación Vertical
 
 **Cuándo utilizarla:**
@@ -184,4 +279,3 @@ Combina la fragmentación horizontal y vertical. Inicialmente, se puede realizar
 
 **Resumen:**  
 La fragmentación de bases de datos a través de métodos horizontal, vertical y mixto permite distribuir los datos de manera eficiente y optimizar tanto la consulta como el almacenamiento en entornos distribuidos. Estas técnicas, combinadas con estrategias de replicación y mecanismos de sincronización, constituyen la base para construir sistemas robustos, escalables y seguros en el contexto de bases de datos distribuidas.
-
