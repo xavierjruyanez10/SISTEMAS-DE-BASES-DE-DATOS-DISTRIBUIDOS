@@ -232,7 +232,7 @@ Netflix usa CDNs para entregar videos rápidamente.
 - Todos los nodos son **Masters**.  
 - Pueden **leer y escribir**.  
 - Replicación **síncrona o asíncrona**.
-![Texto alternativo](Comparacion.png)
+![Texto alternativo](comparacion.png)
 
 ---
 
